@@ -112,6 +112,7 @@ from multilineMAX7219_fonts import CP437_FONT, SINCLAIRS_FONT, LCD_FONT, TINY_FO
 # IMPORTANT: User must specify the number of MAX7219 matrices here:
 MATRIX_WIDTH  = 3
 MATRIX_HEIGHT = 3
+ROTATE_BLOCKS_BY_180_DEGREES = False
 
 # Optional: It is also possible to change the default font for all the library functions:
 DEFAULT_FONT = CP437_FONT          # Note: some fonts only contain characters in chr(32)-chr(126) range
@@ -177,8 +178,25 @@ def send_reg_byte(register, data):
 
 def send_bytes(datalist):
     # Send sequence of bytes (should be [register,data] tuples) via SPI port, then raise CS
-    # Included for ease of remembering the syntax rather than the native spidev command, but also to avoid reassigning to 'datalist' argument
-    spi.xfer2(datalist[:])
+	# This results in an Array with appended tuples. Its length depends on how many matrices are used. 
+	# Example: [matix1 register, value, matrix2 register, value, matrix3 register, value, ...]
+    if ROTATE_BLOCKS_BY_180_DEGREES:
+        rotated_data = []
+        for matrix in range(NUM_MATRICES):
+            register = datalist[matrix*2]
+            binaryvalue = "{0:08b}".format(datalist[matrix*2+1])  # data as binary string
+			# only modify data for registers 1-8
+            if (datalist[matrix*2] != 0 and datalist[matrix*2] < 9):
+				# mirror rows
+                register = 9-datalist[matrix*2]
+                # mirror columns
+                binaryvalue = ""
+                for i in range(8):
+                    binaryvalue += "{0:08b}".format(datalist[matrix*2+1])[7-i]
+            rotated_data += [register, int(binaryvalue, 2)]
+        spi.xfer2(rotated_data[:])
+    else:
+        spi.xfer2(datalist[:])
 
 def send_matrix_reg_byte(matrix, register, data):
     # Send one byte of data to one register in just one MAX7219 without affecting others
