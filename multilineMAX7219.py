@@ -164,6 +164,7 @@ GFX_INVERT = 2   # Invert the state of the relevant LEDs
 # Open SPI bus#0 using CS0 (CE0)
 spi = spidev.SpiDev()
 spi.open(0,0)
+spi.max_speed_hz = 500000
 
 # ---------------------------------------
 # Library function definitions begin here
