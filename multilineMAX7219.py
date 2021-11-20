@@ -128,7 +128,7 @@ MATRICES     = range(NUM_MATRICES) # List of available matrices for validation
 # Graphics setup
 gfx_rows    = range(MATRIX_HEIGHT * 8)
 gfx_columns = range(MATRIX_WIDTH * 8)
-gfx_buffer  = [[0 for x1 in xrange(MATRIX_HEIGHT*8)] for x2 in xrange(MATRIX_WIDTH*8)]
+gfx_buffer  = [[0 for x1 in range(MATRIX_HEIGHT*8)] for x2 in range(MATRIX_WIDTH*8)]
 
 # Registers in the MAX7219 matrix controller (see datasheet)
 MAX7219_REG_NOOP        = 0x0
@@ -429,28 +429,28 @@ def gfx_set_px(g_x, g_y, state=GFX_INVERT):
 
 def gfx_set_col(g_col, state=GFX_INVERT):
     # Set an entire column in the graphics buffer to on, off, or the inverse of its previous state
-    if (g_col in gfx_columns):
-        if state == GFX_ON:
+	if (g_col in gfx_columns):
+		if state == GFX_ON:
 			for g_y in range(MATRIX_HEIGHT*8):
 				gfx_buffer[g_col][g_y] = 1
-        elif state == GFX_OFF:
+		elif state == GFX_OFF:
 			for g_y in range(MATRIX_HEIGHT*8):
 				gfx_buffer[g_col][g_y] = 0
-        elif state == GFX_INVERT:
-            for g_y in range(MATRIX_HEIGHT*8):
+		elif state == GFX_INVERT:
+			for g_y in range(MATRIX_HEIGHT*8):
 				gfx_buffer[g_col][g_y] = gfx_buffer[g_col][g_y] ^ 1
 
 def gfx_set_all(state=GFX_INVERT):
     # Set the entire graphics buffer to on, off, or the inverse of its previous state
-    for g_col in gfx_columns:
-        if state == GFX_ON:
-            for g_y in range(MATRIX_HEIGHT*8):
+	for g_col in gfx_columns:
+		if state == GFX_ON:
+			for g_y in range(MATRIX_HEIGHT*8):
 				gfx_buffer[g_col][g_y] = 1
-        elif state == GFX_OFF:
-            for g_y in range(MATRIX_HEIGHT*8):
+		elif state == GFX_OFF:
+			for g_y in range(MATRIX_HEIGHT*8):
 				gfx_buffer[g_col][g_y] = 0
-        elif state == GFX_INVERT:
-            for g_y in range(MATRIX_HEIGHT*8):
+		elif state == GFX_INVERT:
+			for g_y in range(MATRIX_HEIGHT*8):
 				gfx_buffer[g_col][g_y] = gfx_buffer[g_col][g_y] ^ 1
 				
 def gfx_line(start_x, start_y, end_x, end_y, state=GFX_INVERT, incl_endpoint=GFX_ON):
@@ -473,7 +473,7 @@ def gfx_line(start_x, start_y, end_x, end_y, state=GFX_INVERT, incl_endpoint=GFX
             #if (0 <= g_x < 8*NUM_MATRICES) and (0<= g_y <8):
                 gfx_set_px(g_x, g_y, state)
     else:
-        step_y = abs(len_y) / len_y
+        step_y = int(abs(len_y) / len_y)
         for g_y in range(start_y, end_y + incl_endpoint*step_y, step_y):
             g_x = int(start_x + float(len_x) * (float(g_y - start_y)) / float(len_y) + 0.5)
             if (g_x in gfx_columns) and (g_y in gfx_rows):
@@ -838,28 +838,28 @@ if __name__ == "__main__":
             clear_all()
     except IndexError:
         # If no arguments given, show help text
-        print "multilineMAX7219.py"
-        print "Scrolls a message across an m x n array of MAX7219 8x8 LED boards"
-        print "Run syntax:"
-        print "  python multilineMAX7219.py message [repeats [speed [direction [font]]]]"
-        print "    or, if the file has been made executable with chmod +x multilineMAX7219.py :"
-        print "      ./multilineMAX7219.py message [repeats [speed [direction [font]]]]"
-        print "Parameters:"
-        print "  (none)               : displays this help information"
-        print "  message              : any text to be displayed on the array"
-        print "                         if message is more than one word, it must be enclosed in 'quotation marks'"
-        print "                         Note: include blank space(s) at the end of 'message' if it is to be displayed multiple times"
-        print "  repeats (optional)   : number of times the message is scrolled"
-        print "                         repeats = 0 scrolls indefinitely until <Ctrl<C> is pressed"
-        print "                         if omitted, 'repeats' defaults to 0 (indefinitely)"
-        print "  speed (optional)     : how fast the text is scrolled across the array"
-        print "                         1 (v.slow) to 9 (v.fast) inclusive (not necessarily integral)"
-        print "                         if omitted, 'speed' defaults to 3"
-        print "  direction (optional) : direction the text is scrolled"
-        print "                         L or R - if omitted, 'direction' defaults to L"
-        print "  font (optional)      : font to use for the displayed text"
-        print "                         CP437, SINCLAIRS, LCD or TINY only - default 'font' if not recognized is CP437"
-        print "multilineMAX7219.py can also be imported as a module to provide a wider range of functions for driving the array"
-        print "  See documentation within the script for details of these functions, and how to setup the library and the array"
+        print ("multilineMAX7219.py")
+        print ("Scrolls a message across an m x n array of MAX7219 8x8 LED boards")
+        print ("Run syntax:")
+        print ("  python multilineMAX7219.py message [repeats [speed [direction [font]]]]")
+        print ("    or, if the file has been made executable with chmod +x multilineMAX7219.py :")
+        print ("      ./multilineMAX7219.py message [repeats [speed [direction [font]]]]")
+        print ("Parameters:")
+        print ("  (none)               : displays this help information")
+        print ("  message              : any text to be displayed on the array")
+        print ("                         if message is more than one word, it must be enclosed in 'quotation marks'")
+        print ("                         Note: include blank space(s) at the end of 'message' if it is to be displayed multiple times")
+        print ("  repeats (optional)   : number of times the message is scrolled")
+        print ("                         repeats = 0 scrolls indefinitely until <Ctrl<C> is pressed")
+        print ("                         if omitted, 'repeats' defaults to 0 (indefinitely)")
+        print ("  speed (optional)     : how fast the text is scrolled across the array")
+        print ("                         1 (v.slow) to 9 (v.fast) inclusive (not necessarily integral)")
+        print ("                         if omitted, 'speed' defaults to 3")
+        print ("  direction (optional) : direction the text is scrolled")
+        print ("                         L or R - if omitted, 'direction' defaults to L")
+        print ("  font (optional)      : font to use for the displayed text")
+        print ("                         CP437, SINCLAIRS, LCD or TINY only - default 'font' if not recognized is CP437")
+        print ("multilineMAX7219.py can also be imported as a module to provide a wider range of functions for driving the array")
+        print ("  See documentation within the script for details of these functions, and how to setup the library and the array")
                                                                
 
