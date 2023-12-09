@@ -1,0 +1,1 @@
+spriteExtractor drops files into this directory.
