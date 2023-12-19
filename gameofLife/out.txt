@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/pi/multilineMAX7219-master/gameofLife/gameoflife.py", line 64, in <module>
+    grid = update_grid()
+  File "/home/pi/multilineMAX7219-master/gameofLife/gameoflife.py", line 54, in update_grid
+    new_grid[x][y] = get_next_state(x, y)
+  File "/home/pi/multilineMAX7219-master/gameofLife/gameoflife.py", line 43, in get_next_state
+    live_neighbors = sum(grid[(x + dx) % WIDTH][(y + dy) % HEIGHT] for dx, dy in NEIGHBOR_DIRECTIONS)
+  File "/home/pi/multilineMAX7219-master/gameofLife/gameoflife.py", line 43, in <genexpr>
+    live_neighbors = sum(grid[(x + dx) % WIDTH][(y + dy) % HEIGHT] for dx, dy in NEIGHBOR_DIRECTIONS)
+TypeError: list indices must be integers or slices, not float
