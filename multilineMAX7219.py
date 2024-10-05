@@ -111,8 +111,8 @@ from multilineMAX7219_fonts import CP437_FONT, SINCLAIRS_FONT, LCD_FONT, TINY_FO
 
 # IMPORTANT: User must specify the number of MAX7219 matrices here:
 MATRIX_WIDTH  = 3
-MATRIX_HEIGHT = 3
-ROTATE_BLOCKS_BY_180_DEGREES = False
+MATRIX_HEIGHT = 4
+ROTATE_BLOCKS_BY_180_DEGREES = True
 
 # Optional: It is also possible to change the default font for all the library functions:
 DEFAULT_FONT = CP437_FONT          # Note: some fonts only contain characters in chr(32)-chr(126) range
