@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/home/pi/multilineMAX7219-master/snakeGame/snakeEvolved4.py", line 127, in <module>
+    setTarget()
+  File "/home/pi/multilineMAX7219-master/snakeGame/snakeEvolved4.py", line 59, in setTarget
+    while not is_valid_target_position(target):
+  File "/home/pi/multilineMAX7219-master/snakeGame/snakeEvolved4.py", line 54, in is_valid_target_position
+    return int(pos.x) not in [int(p.x) for p in tail] and not walls[int(pos.x)][int(pos.y)]
+IndexError: list index out of range

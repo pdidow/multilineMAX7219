@@ -1,0 +1,3 @@
+Death sound loaded successfully.
+To end the game press <q>
+Game Over. Press any Key to exit. Score: 3

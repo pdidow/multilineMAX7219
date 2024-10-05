@@ -1,0 +1,10 @@
+Exception in thread Thread-5:
+Traceback (most recent call last):
+  File "/home/pi/multilineMAX7219-master/asteroidsGame/_Getch.py", line 26, in __call__
+    ch = sys.stdin.read(1)
+OSError: [Errno 5] Input/output error
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.9/threading.py", line 954, in _bootstrap_inner

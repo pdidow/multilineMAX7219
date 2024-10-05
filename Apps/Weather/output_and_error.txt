@@ -1,0 +1,10 @@
+Current temperature: 10.9C, Weather: Mainly clear
+Traceback (most recent call last):
+  File "/home/pi/multilineMAX7219-master/Apps/Weather/myWeather3.py", line 114, in <module>
+  File "/home/pi/multilineMAX7219-master/Apps/Weather/myWeather3.py", line 106, in main
+  File "/home/pi/multilineMAX7219-master/Apps/Weather/myWeather3.py", line 83, in scroll_weather_message
+  File "/usr/local/lib/python3.9/dist-packages/luma.core-2.4.1-py3.9.egg/luma/core/legacy/__init__.py", line 93, in show_message
+    i += 1
+  File "/usr/local/lib/python3.9/dist-packages/luma.core-2.4.1-py3.9.egg/luma/core/sprite_system.py", line 209, in __exit__
+    sleep(sleep_for)
+KeyboardInterrupt
